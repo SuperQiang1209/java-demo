@@ -1,0 +1,22 @@
+设计模式示例项目:
+package介绍
+	example:模式示例
+	extend:模式示例扩展
+	generalcode:模式通用代码
+	
+各模式package介绍:	
+_01singletonpattern:单例模式
+_02factorypattern:工厂模式
+_03absfactorypattern:抽象工厂模式
+_04templatemethodpattern:模板方法模式
+_05builderpattern:建造者模式
+_06proxypattern:代理模式
+_07prototypepattern:原型模式
+_08mediatorpattern:中介者模式
+_09commandpattern:命令模式
+_10responsibilitychainpattern:责任链模式
+_11decorativepattern:装饰模式
+_12strategypattern:策略模式
+_13adapterpattern:适配器模式
+
+
