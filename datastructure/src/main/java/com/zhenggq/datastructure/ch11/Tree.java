@@ -87,15 +87,112 @@ public class Tree {
      * 2.该节点有一个子节点
      * 改变父节点的引用，将其直接指向要删除节点的子节点
      * 3.该节点有两个子节点
-     * 要删除有两个子节点的节点，就需要使用它的后序后继来替代该节点
+     * 要删除有两个子节点的节点，就需要使用它的后序后继来替代该节点。(用右子树中最小的树代替该节点的数据并递归删除那个节点)
+     * 因为该节点有两个子节点，直接删除会对树造成影响,所以要找一个节点来继承该节点.
      *
      * @param:
      * @return:
      * @author: Zhenggq
      * @date: 2018/9/15
      */
-    public void delete() {
+    public boolean delete(long val) {
+        //引用当前节点，从根节点开始
+        Node currentNode = root;
+        //引用当前接的父节点
+        Node parentNode = root;
+        //记录要删除的节点是左子节点 or 右子节点
+        boolean isLeftChild = false;
+        if (currentNode == null) {
+            return false;
+        }
 
+        //查找节点
+        while (val != currentNode.data) {
+
+            parentNode = currentNode;
+            if (val < currentNode.data) {
+                currentNode = currentNode.leftChild;
+                isLeftChild = true;
+            } else if (val > currentNode.data) {
+                currentNode = currentNode.rightChild;
+                isLeftChild = false;
+            }
+            if (currentNode == null) {
+                return false;
+            }
+
+        }
+
+        //第一种情况:该节点是叶子节点，没有子节点
+        if (currentNode.leftChild == null && currentNode.rightChild == null) {
+            if (currentNode == root) {
+                root = null;
+            } else if (isLeftChild) {
+                parentNode.leftChild = null;
+            } else {
+                parentNode.rightChild = null;
+            }
+        }
+
+        //第二种情况：该节点有一个叶子节点
+        else if (currentNode.leftChild == null) {
+            if (currentNode == root) {
+                root = currentNode.rightChild;
+            } else if (isLeftChild) {
+                parentNode.leftChild = currentNode.rightChild;
+            } else {
+                parentNode.rightChild = currentNode.rightChild;
+            }
+
+        } else if (currentNode.rightChild == null) {
+            if (currentNode == root) {
+                root = currentNode.leftChild;
+            } else if (isLeftChild) {
+                parentNode.leftChild = currentNode.leftChild;
+            } else {
+                parentNode.rightChild = currentNode.leftChild;
+            }
+        }
+
+        //第三种情况:该节点有两个子节点
+        else {
+            //获取继承节点,当前节点右子树中节点下最小的数
+            Node successor = getSuccessor(currentNode);
+            if (currentNode == root) {
+                root = successor;
+            } else if (isLeftChild) {
+                parentNode.leftChild = successor;
+            } else {
+                parentNode.rightChild = successor;
+            }
+            successor.leftChild = currentNode.leftChild;
+
+        }
+        return true;
+    }
+
+    /**
+     * 获取中序后继节点,沿着节点的左子节点一直寻找,最后一个左节点就是继承节点.
+     *
+     * @return
+     */
+    private Node getSuccessor(Node delNode) {
+        Node successor = delNode;
+        Node successorParent = delNode;
+        Node current = delNode.rightChild;
+
+        while (current != null) {
+            successorParent = successor;
+            successor = current;
+            current = current.leftChild;
+        }
+
+        if (successor != delNode.rightChild) {
+            successorParent.leftChild = successor.rightChild;
+            successor.rightChild = delNode.rightChild;
+        }
+
+        return successor;
     }
 
     /**

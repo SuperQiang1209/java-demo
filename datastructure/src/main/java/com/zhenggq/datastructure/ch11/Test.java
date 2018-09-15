@@ -21,6 +21,8 @@ public class Test {
         t.insert(13);
         t.insert(9);
         t.insert(5);
+        t.insert(12);
+        t.insert(14);
 
         //System.out.println(t.root.data);
         //System.out.println(t.root.rightChild.data);
@@ -31,22 +33,37 @@ public class Test {
         //Node n = t.find(25);
         //System.out.println(n.data);
 
+
         //前序遍历
         System.out.println("前序遍历测试=======");
         t.frontOrder(t.root);
-
         //中序遍历
         System.out.println("中序遍历测试=======");
         t.inOrder(t.root);
-
         //后序遍历
         System.out.println("后序遍历测试=======");
         t.laterOrder(t.root);
 
-        //            10
-        //        6        //15
-        //    5      9    13        //25
-        //
+
+        //删除测试1,删除数字为5的节点,第一种情况
+        t.delete(5);
+        System.out.println("验证删除结果1=======");
+        t.frontOrder(t.root);
+        //删除测试2,删除数字为6的节点,第二种情况
+        t.delete(6);
+
+        t.delete(9);
+        t.delete(10);
+
+        System.out.println("验证删除结果2=======");
+        t.frontOrder(t.root);
+
+
+        //             10
+        //        6           15
+        //    5      9    13     25
+        //              12  14 23  50
+        //                   22
         //
         //
     }
