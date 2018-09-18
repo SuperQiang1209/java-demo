@@ -18,7 +18,7 @@ public class Provider {
             System.out.println("===服务注册成功==");
             System.in.read();
         } catch (IOException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }
