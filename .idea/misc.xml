@@ -9,6 +9,13 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-server1/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-consul/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-hystrix/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-service1/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-service2/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
